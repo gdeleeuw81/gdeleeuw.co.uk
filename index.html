@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guillaume Deleeuw | Technical Support Leader</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+  <div class="container">
+    <!-- Dark Mode Toggle -->
+    <button class="toggle-darkmode btn">🌓 Toggle Dark Mode</button>
+
+    <!-- Banner -->
+    <header class="banner animate">
+      <div class="overlay">
+        <h1>Guillaume Deleeuw</h1>
+        <p class="subtitle">Technical Support Leader | SaaS | Cloud | Incident Management</p>
+        <a href="https://www.linkedin.com/in/guillaume-deleeuw/" target="_blank" class="btn">Connect on LinkedIn</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- About Me -->
+      <section class="about animate">
+        <h2>About Me</h2>
+        <p>With over a decade of leadership in technical support at companies like Braze, Zendesk, and Apple, I bring a proven track record of building high-performing teams, improving incident management workflows, and leveraging AI-driven automation to drive operational excellence.</p>
+      </section>
+
+      <!-- Tech Stack -->
+      <section class="tech-stack animate">
+        <h2>Tech Stack & Tools</h2>
+        <div class="tech-icons">
+          <span title="AWS">☁️ AWS</span>
+          <span title="Azure">🔷 Azure</span>
+          <span title="Datadog">📊 Datadog</span>
+          <span title="Cloudflare">🛡️ Cloudflare</span>
+          <span title="Apache2">🌐 Apache2</span>
+          <span title="Debian">🐧 Debian</span>
+          <span title="Bash">📜 Bash</span>
+          <span title="Zendesk">💬 Zendesk</span>
+          <span title="Slack">💻 Slack</span>
+          <span title="Jira">📌 Jira</span>
+          <span title="PagerDuty">⏰ PagerDuty</span>
+        </div>
+      </section>
+
+      <!-- Download CV -->
+      <section class="download-cv animate">
+        <h2>Download My CV</h2>
+        <p>If you'd like a copy of my professional resume, you can download it below.</p>
+        <a class="btn" href="assets/guillaume-deleeuw-cv.pdf" download>📄 Download CV</a>
+      </section>
+
+      <!-- Live Monitoring -->
+      <section class="monitoring animate">
+        <h2>Live System Monitoring</h2>
+        <p>This website is proudly self-hosted on a <strong>Raspberry Pi 5</strong> running the latest version of <strong>Debian Linux</strong>. It is reverse-proxied through <strong>Cloudflare</strong> for enhanced global availability, DDoS mitigation, and TLS termination, and actively monitored using <strong>Datadog</strong> for comprehensive observability.</p>
+        <p>I use this setup as a practical testbed to explore advanced monitoring strategies, including <strong>custom metrics</strong>, <strong>real-time alerting</strong>, and <strong>log aggregation</strong>. The stack includes <strong>Apache2</strong> for serving static content and custom shell scripts for <strong>automated backups and patch management</strong>.</p>
+        <p>This environment supports my ongoing learning in <strong>infrastructure as code</strong>, <strong>security hardening</strong>, and <strong>cloud-native architecture</strong>, reflecting my passion for hands-on technical leadership in support engineering.</p>
+		<p><strong>See how the server is doing right now below!</strong></p>
+		
+        <button class="btn toggle-monitoring" id="toggleGraphBtn" onclick="toggleMonitoring()">🔽 Show Graph</button>
+
+        <div id="monitoring-iframe-wrapper" class="graph-hidden">
+          <iframe
+            id="monitoring-iframe"
+            src="https://p.datadoghq.eu/sb/embed/tshc14ajdpcu2ath-e8c065349532c0cfd2f6345451b493f9"
+            title="Live Monitoring - Datadog"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+          <button class="btn refresh-monitoring" onclick="refreshMonitoring()">🔄 Refresh Graph</button>
+        </div>
+      </section>
+	  
+	  <!-- Developer Tools Promo -->
+<section class="developer tools">
+  <h2>Developer Utilities</h2>
+  <p>Explore useful online tools like JSON formatters, JWT decoders, and more — all running locally on this Pi.</p>
+  <a class="btn" href="/tools/index.html">🛠️ Try the Developer tools</a>
+</section>
+
+
+      <!-- Visitors Link -->
+      <div class="visitors-link">
+        <a href="/visitors">📋 Visitor Logs</a>
+      </div>
+
+      <!-- Footer -->
+      <footer class="animate">
+        <p>© 2025 Guillaume Deleeuw</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+      }
+
+      const darkToggle = document.querySelector('.toggle-darkmode');
+      if (darkToggle) {
+        darkToggle.addEventListener('click', () => {
+          const enabled = document.body.classList.toggle('dark-mode');
+          localStorage.setItem('darkMode', enabled ? 'enabled' : 'disabled');
+        });
+      }
+
+      document.querySelectorAll('.animate').forEach(el => el.classList.add('visible'));
+    });
+
+    function toggleMonitoring() {
+      const wrapper = document.getElementById('monitoring-iframe-wrapper');
+      const btn = document.getElementById('toggleGraphBtn');
+      const isHidden = wrapper.classList.toggle('graph-hidden');
+      btn.textContent = isHidden ? '🔽 Show Graph' : '🔼 Hide Graph';
+    }
+
+    function refreshMonitoring() {
+      const iframe = document.getElementById('monitoring-iframe');
+      iframe.src = iframe.src;
+    }
+  </script>
+</body>
+</html>

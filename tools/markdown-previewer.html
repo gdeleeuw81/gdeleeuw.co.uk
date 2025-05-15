@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Previewer</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <a class="btn" href="/tools/index.html">⬅️ Back to Tools</a>
+    <button class="toggle-darkmode btn">🌓 Toggle Dark Mode</button>
+
+    <header class="banner animate">
+      <div class="overlay">
+        <h1>Markdown Previewer</h1>
+        <p class="subtitle">Live preview your Markdown with full formatting support.</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="animate">
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <textarea id="markdown-input" placeholder="Write your Markdown here..." rows="10" style="width: 100%; padding: 1rem; border-radius: 8px; font-family: monospace;"></textarea>
+
+          <div style="margin: 0.5rem 0;">
+            <button class="btn" onclick="clearMarkdown()">🗑️ Clear</button>
+            <button class="btn" onclick="copyMarkdown()">📋 Copy HTML</button>
+          </div>
+
+          <h3>Live Preview</h3>
+          <div id="markdown-preview" class="json-output" style="background-color: #f9f9f9; padding: 1rem; border-radius: 8px;"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="animate">
+      <p>© 2025 Guillaume Deleeuw</p>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+      }
+
+      const darkToggle = document.querySelector('.toggle-darkmode');
+      if (darkToggle) {
+        darkToggle.addEventListener('click', () => {
+          const enabled = document.body.classList.toggle('dark-mode');
+          localStorage.setItem('darkMode', enabled ? 'enabled' : 'disabled');
+        });
+      }
+
+      document.querySelectorAll('.animate').forEach(el => el.classList.add('visible'));
+
+      // Live update on input
+      document.getElementById('markdown-input').addEventListener('input', () => {
+        const input = document.getElementById('markdown-input').value;
+        document.getElementById('markdown-preview').innerHTML = marked.parse(input);
+      });
+    });
+
+    function clearMarkdown() {
+      document.getElementById('markdown-input').value = '';
+      document.getElementById('markdown-preview').innerHTML = '';
+    }
+
+    function copyMarkdown() {
+      const html = document.getElementById('markdown-preview').innerHTML;
+      navigator.clipboard.writeText(html).then(() => {
+        alert('📋 HTML copied to clipboard');
+      }, () => {
+        alert('❌ Failed to copy');
+      });
+    }
+  </script>
+</body>
+</html>
+

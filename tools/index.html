@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Tools | Free Online Utilities</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+  <div class="container">
+
+<a class="btn" href="/">⬅️ Back to home</a>
+
+    <!-- Dark Mode Toggle -->
+    <button class="toggle-darkmode btn">🌓 Toggle Dark Mode</button>
+
+    <!-- Banner -->
+    <header class="banner animate">
+      <div class="overlay">
+        <h1>Free Developer Tools</h1>
+        <p class="subtitle">Fast, Privacy-Friendly & Self-Hosted on a Raspberry Pi 5</p>
+      </div>
+    </header>
+
+    <main>
+      <!-- Tool Index -->
+      <section class="about animate">
+        <h2>Available Tools</h2>
+        <p>Click on any of the tools below to get started. All tools run client-side and respect your privacy.</p>
+        <ul class="tool-list">
+          <li><a class="btn" href="/tools/json-formatter.html">📂 JSON Formatter & Validator</a></li>
+          <li><a class="btn" href="/tools/base64-encoder.html">🔐 Base64 Encode/Decode</a></li>
+          <li><a class="btn" href="/tools/jwt-decoder.html">🪪 JWT Decoder</a></li>
+          <li><a class="btn" href="/tools/regex-tester.html">🧪 Regex Tester</a></li>
+          <li><a class="btn" href="/tools/markdown-previewer.html">📝 Markdown Previewer</a></li>
+          <li><a class="btn" href="/tools/uuid-generator.html">🆔 UUID Generator</a></li>
+        </ul>
+      </section>
+
+      <!-- Monitoring or Notes Section (optional) -->
+      <section class="monitoring animate">
+        <h2>Powered by Pi</h2>
+        <p>This site is fully hosted on a <strong>Raspberry Pi 5</strong> running Debian Linux and fronted with <strong>Cloudflare</strong>. Built for speed, privacy, and accessibility.</p>
+      </section>
+
+      <!-- Footer -->
+      <footer class="animate">
+        <p>© 2025 Guillaume Deleeuw</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+      }
+
+      const darkToggle = document.querySelector('.toggle-darkmode');
+      if (darkToggle) {
+        darkToggle.addEventListener('click', () => {
+          const enabled = document.body.classList.toggle('dark-mode');
+          localStorage.setItem('darkMode', enabled ? 'enabled' : 'disabled');
+        });
+      }
+
+      document.querySelectorAll('.animate').forEach(el => el.classList.add('visible'));
+    });
+  </script>
+</body>
+</html>
+
